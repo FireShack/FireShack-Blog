@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { v4 as uuidv4 } from "uuid";
+import bcrypt from "bcryptjs";
 import userModel from "../models/user.model";
 
 export const handleGetUsers = async (req: Request, res: Response) => {
@@ -37,7 +37,11 @@ export const handleGetUser = async (req: Request, res: Response) => {
 export const handlePostUsers = async (req: Request, res: Response) => {
   const { name, email, pass, role } = req.body;
   try {
-    const userToAdd = new userModel({ name, email, pass, role });
+    // Password Encryptation
+    const salt = bcrypt.genSaltSync();
+    const newPass = bcrypt.hashSync(pass, salt);
+
+    const userToAdd = new userModel({ name, email, pass: newPass, role });
     await userToAdd.save();
     res.status(200).json({ msg: "User added", user: { name, email } });
   } catch (error) {
@@ -50,9 +54,7 @@ export const handlePutUsers = async (req: Request, res: Response) => {
   const { name, email } = req.body;
   try {
     const userToUpd = await userModel.findByIdAndUpdate(id, { name, email });
-    res
-      .status(200)
-      .json({ msg: "User updated successfully", user: userToUpd });
+    res.status(200).json({ msg: "User updated successfully", user: userToUpd });
   } catch (error) {
     res.status(400).json({ msg: "There was an error", error });
   }
