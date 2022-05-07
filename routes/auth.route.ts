@@ -10,7 +10,7 @@ auth.post(
   [
     check("email", "You must provide a valid email").not().isEmpty(),
     check("email", "You must provide a valid email").isEmail(),
-    check("password", "You must provide a valid password").not().isEmpty(),
+    check("pass", "You must provide a valid password").not().isEmpty(),
     validateFields,
   ],
   handleLogin

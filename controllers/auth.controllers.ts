@@ -3,14 +3,13 @@ import { Request } from "express-validator/src/base";
 import userModel from "../models/user.model";
 
 export const handleLogin = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { email, pass } = req.body;
   try {
-    let userFound: any;
-    userFound = await userModel.findOne({ where: { email } });
+    const userFound = await userModel.findOne({ email });
     if (!userFound || !userFound.state) {
       return res.status(400).json({ msg: `${email} is not registered` });
     }
-    if (password !== userFound.password) {
+    if (pass !== userFound.pass) {
       return res.status(200).json({ msg: "Please, check your password" });
     }
 
