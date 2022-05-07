@@ -1,7 +1,7 @@
-# Rest TypeScript server
+# Rest TypeScript Server
 
 This is a complete rest server, entirely coded with TypeScript. Is a ready to use server to authenticate users.
-In this case, i used MySQL and Sequalize for handle all users into the DB. It also includes validations, middlewares and configs that makes this server a good starting shell for your next project.
+In this case, i used MongoDB and Mongoose for handle all users into the DB. It also includes validations, middlewares and configs that makes this server a good starting shell for your next project.
 
 ## What is this?
 
@@ -13,11 +13,11 @@ This is a ready to use server. You will be able to make http request on the prog
 
 ### Testing
 
-_npm test_ runs **nodemon server.ts** so we should use it for testing.
+_npm test_ runs **nodemon server.js** so we should use it for testing.
 
 ### Running the server
 
-_npm start_ runs **node server.ts** so we should run to start the server.
+_npm start_ runs **node server.js** so we should run to start the server.
 
 ## How to use it?
 
@@ -38,9 +38,7 @@ _npm start_ runs **node server.ts** so we should run to start the server.
 ## Some extra information
 
 This "shell" includes validated routes, own middlewares, designed SQL schemas,
-Maria DB operations with Sequelize (ORM) and some more features. How i said previously, you can modify all that data. To use your own SQL DB, use your .env variables or fill the db/db.config.ts file with your db name, username, password, host and dialect (MySQL, PostgreSQL, SQL Server, SQLite3, MariaDB). For the dialect, you must install the one that you want, for example, i used _npm install --save mariadb_. After that, you will be able to set it into dialect config. Here is the [Sequelize documentation](https://sequelize.org/docs/v6/getting-started/).
-
-I used Maria DB and phpMyAdmin to manage it. If you don't have any of those installed, maybe you can install WAMP, XAMPP or another similar or directly install phpMyAdmin. More info about [WAMP](https://www.wampserver.com/en/).
+MongoDB operations with Mongoose (ODM) and some more features. How i said previously, you can modify all that data. To use your own MongoDB, use your .env variables or fill the db/db.config.ts file with your Mongo's link.
 
 ## Endpoints
 
@@ -60,18 +58,18 @@ I used Maria DB and phpMyAdmin to manage it. If you don't have any of those inst
 
 You can test all this rest api endpoints with the available link into the description, or cloning this
 repository and starting a node server. I recommends to use POSTMAN to test all the endpoints.
-[Here is the POSTMAN documentation](https://documenter.getpostman.com/view/20548561/UyrHfYu2).
+[Coming soon](https://github.com/FireShack/rest-server-vTS-MongoDB).
 
 ## Dependencies
 
 You can execute _npm install_. Note that all these packages are installed with types into the devDep, because for TypeScript are required.
 
-- typescript
 - node.js
+- typescript
 - express
 - dotenv
 - cors
-- sequelize
+- mongoose
 - nodemon (you must have it downloaded global)
 - express-validator
 
