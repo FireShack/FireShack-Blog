@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
 import { userModel } from "../interfaces/user.interfaces";
-import { Entry } from "./entry.model";
 
 const User = new Schema<userModel>({
   img: {

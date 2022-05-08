@@ -1,7 +1,7 @@
-import { Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 import { userEntries } from "../interfaces/entry.interfaces";
 
-export const Entry = new Schema<userEntries>({
+const Entry = new Schema<userEntries>({
   id: {
     type: String,
     required: true,
@@ -32,3 +32,5 @@ export const Entry = new Schema<userEntries>({
     default: [],
   },
 });
+
+export default model<userEntries>("Entry", Entry);
