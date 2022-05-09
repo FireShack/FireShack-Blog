@@ -7,7 +7,7 @@ const Entry = new Schema<userEntries>({
     required: true,
   },
   categories: {
-    type: [String],
+    type: [],
     required: true,
   },
   img: {

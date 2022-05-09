@@ -1,7 +1,14 @@
 import { Router } from "express";
-import { handleCreateEntries, handleGetEntries } from "../controllers/entries.controllers";
+import {
+  handleCreateEntries,
+  handleDeleteEntries,
+  handleGetUserEntries,
+  handleUpdateEntries,
+} from "../controllers/entries.controllers";
 
 export const entries = Router();
 
-entries.get("/", handleGetEntries);
-entries.post("/add/:id", handleCreateEntries)
+entries.get("/:id", handleGetUserEntries);
+entries.post("/add/:id", handleCreateEntries);
+entries.put("/modify/:id/:entryID", handleUpdateEntries);
+entries.delete("/delete/:id/:entryID", handleDeleteEntries);
