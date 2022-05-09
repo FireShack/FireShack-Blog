@@ -1,7 +1,7 @@
 import { ObjectId } from "mongoose";
 import userModel from "../models/user.model";
 
-export const existsEmail = async (email: String) => {
+export const existsEmail = async (email: string) => {
   const emailExists = await userModel.findOne().where({ email });
   if (emailExists) {
     throw new Error(`${email} have another account, please login`);
