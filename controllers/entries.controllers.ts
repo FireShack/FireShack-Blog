@@ -31,6 +31,17 @@ export const handleGetUserEntries = async (req: Request, res: Response) => {
   }
 };
 
+export const handleGetOneEntry = async (req: Request, res: Response) => {
+  const { entryID } = req.params;
+  try {
+    const entry = await entryModel.findById(entryID).populate("user");
+    res.status(200).json({ msg: `Entry`, entry });
+  } catch (error) {
+    res.status(500).json({ msg: "There was an error", error });
+    console.log("Errors", error);
+  }
+};
+
 export const handleCreateEntries = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { img, title, body, categories } = req.body;

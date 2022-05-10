@@ -4,6 +4,7 @@ import {
   handleCreateEntries,
   handleDeleteEntries,
   handleGetAllEntries,
+  handleGetOneEntry,
   handleGetUserEntries,
   handleUpdateEntries,
 } from "../controllers/entries.controllers";
@@ -12,9 +13,10 @@ import { validateFields } from "../middlewares/validate.fields";
 import { validateJWT } from "../middlewares/validate.jwt";
 
 export const entries = Router();
-// User Entries
 entries.get("/all", handleGetAllEntries);
 
+// User Entries
+entries.get("/entry/:entryID", handleGetOneEntry);
 entries.get(
   "/:id",
   [
