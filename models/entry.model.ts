@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 import { userEntries } from "../interfaces/entry.interfaces";
 
 const Entry = new Schema<userEntries>({
-  id: {
+  _id: {
     type: String,
     required: true,
   },
@@ -30,6 +30,16 @@ const Entry = new Schema<userEntries>({
     type: [],
     required: false,
     default: [],
+  },
+  state: {
+    type: Boolean,
+    default: true,
+    required: true,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
   },
 });
 

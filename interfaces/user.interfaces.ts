@@ -12,4 +12,5 @@ export interface userModel {
   state: boolean;
   google: boolean;
   entries: userEntries[];
+  ref: string;
 }

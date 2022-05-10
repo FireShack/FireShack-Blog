@@ -52,8 +52,9 @@ const User = new Schema<userModel>({
     default: true,
   },
   entries: {
-    type: [],
+    type: [String],
     default: [],
+    ref: "Entry",
   },
 });
 
