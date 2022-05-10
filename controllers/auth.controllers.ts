@@ -24,7 +24,13 @@ export const handleLogin = async (req: Request, res: Response) => {
       session_id: sessionID,
     });
 
-    res.status(200).json({ msg: `User ${email} loggined successfully`, jwt });
+    res
+      .status(200)
+      .json({
+        msg: `User ${email} loggined successfully`,
+        jwt,
+        user: userFound,
+      });
   } catch (error) {
     res.status(400).json({ msg: "There was an error", error });
     console.log(error);
