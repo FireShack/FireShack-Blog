@@ -13,10 +13,12 @@ import { validateFields } from "../middlewares/validate.fields";
 import { validateJWT } from "../middlewares/validate.jwt";
 
 export const entries = Router();
+
+// All Entries
 entries.get("/all", handleGetAllEntries);
+entries.get("/entry/:entryID", handleGetOneEntry);
 
 // User Entries
-entries.get("/entry/:entryID", handleGetOneEntry);
 entries.get(
   "/:id",
   [
@@ -33,6 +35,11 @@ entries.post(
     validateJWT,
     check("id", "You must provide a valid ID").isMongoId(),
     check("id").custom(existsUser),
+    check("title", "You must provide a title").not().isEmpty(),
+    check("body", "You must provide a body").not().isEmpty(),
+    check("categories", "You must provide at least one category")
+      .not()
+      .isEmpty(),
     validateFields,
   ],
   handleCreateEntries
@@ -43,6 +50,11 @@ entries.put(
     validateJWT,
     check("entryID", "You must provide a valid ID").custom(existsEntry),
     check("entryID", "You must provide a valid entry ID").isLength({ min: 36 }),
+    check("title", "You must provide a title").not().isEmpty(),
+    check("body", "You must provide a body").not().isEmpty(),
+    check("categories", "You must provide at least one category")
+      .not()
+      .isEmpty(),
     validateFields,
   ],
   handleUpdateEntries
