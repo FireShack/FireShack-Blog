@@ -1,6 +1,6 @@
 import express from "express";
 import { check } from "express-validator";
-import { handleLogin } from "../controllers/auth.controllers";
+import { handleLogin, handleLogout } from "../controllers/auth.controllers";
 import { validateFields } from "../middlewares/validate.fields";
 
 export const auth = express.Router();
@@ -14,4 +14,10 @@ auth.post(
     validateFields,
   ],
   handleLogin
+);
+
+auth.post(
+  "/logout/:id",
+  [check("id", "You must provide a valid id").isMongoId()],
+  handleLogout
 );

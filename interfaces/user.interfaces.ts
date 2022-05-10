@@ -7,6 +7,8 @@ export interface userModel {
   pass: string;
   description: string;
   role: string;
+  loggined: boolean;
+  session_id: string;
   state: boolean;
   google: boolean;
   entries: userEntries[];

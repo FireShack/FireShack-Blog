@@ -14,7 +14,7 @@ const User = new Schema<userModel>({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   pass: {
     type: String,
@@ -35,6 +35,16 @@ const User = new Schema<userModel>({
     type: Boolean,
     required: false,
     default: false,
+  },
+  loggined: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  session_id: {
+    type: String,
+    required: false,
+    default: "",
   },
   state: {
     type: Boolean,
