@@ -9,6 +9,7 @@ import {
 } from "../controllers/users.controllers";
 import { existsEmail, existsUser } from "../middlewares/db.validator";
 import { validateFields } from "../middlewares/validate.fields";
+import { validateJWT } from "../middlewares/validate.jwt";
 
 export const users = express.Router();
 
@@ -16,6 +17,7 @@ users.get("/users", handleGetUsers);
 users.get(
   "/users/:id",
   [
+    validateJWT,
     check("id", "You must provide the ID").isEmpty(),
     check("id", "You must provide a valid ID").isMongoId(),
     validateFields,
@@ -39,6 +41,7 @@ users.post(
 users.put(
   "/users/modify/:id",
   [
+    validateJWT,
     check("id").not().isEmpty(),
     check("id", "You must provide a valid ID").isMongoId(),
     check("id").custom(existsUser),
@@ -51,6 +54,7 @@ users.put(
 users.delete(
   "/users/delete/:id",
   [
+    validateJWT,
     check("id").not().isEmpty(),
     check("id", "You must provide a valid ID").isMongoId(),
     check("id").custom(existsUser),

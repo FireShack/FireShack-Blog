@@ -1,6 +1,7 @@
 import { Response, Request } from "express";
 import bcrypt from "bcryptjs";
 import userModel from "../models/user.model";
+import { generateToken } from "../helpers/generate.jwt";
 
 export const handleLogin = async (req: Request, res: Response) => {
   const { email, pass } = req.body;
@@ -15,7 +16,9 @@ export const handleLogin = async (req: Request, res: Response) => {
       return res.status(200).json({ msg: "Please, check your password" });
     }
 
-    res.status(200).json({ msg: `User ${email} loggined successfully` });
+    const jwt = await generateToken(userFound.id);
+
+    res.status(200).json({ msg: `User ${email} loggined successfully`, jwt });
   } catch (error) {
     res.status(400).json({ msg: "There was an error", error });
   }
