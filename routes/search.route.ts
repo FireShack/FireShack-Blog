@@ -1,6 +1,10 @@
 import { Router } from "express";
-import { handleSearch } from "../controllers/search.controller";
+import {
+  handleSearchEntries,
+  handleSearchUsers,
+} from "../controllers/search.controller";
 
-const search = Router();
+export const search = Router();
 
-search.get("/:params/:limit", handleSearch);
+search.get("/entries/:params", handleSearchEntries);
+search.get("/users/:params", handleSearchUsers);

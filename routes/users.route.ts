@@ -6,6 +6,8 @@ import {
   handleGetUsers,
   handlePostUsers,
   handlePutUsers,
+  handleFollowUsers,
+  handleUnfollowUsers,
 } from "../controllers/users.controllers";
 import { existsEmail, existsUser } from "../middlewares/db.validator";
 import { validateFields } from "../middlewares/validate.fields";
@@ -61,4 +63,33 @@ users.delete(
     validateFields,
   ],
   handleDeleteUsers
+);
+// User follows another user
+users.post(
+  "/users/:id/follow/:toId",
+  [
+    validateJWT,
+    check("id").not().isEmpty(),
+    check("toId").not().isEmpty(),
+    check("id", "You must provide a valid ID").isMongoId(),
+    check("toId", "You must provide a valid ID").isMongoId(),
+    check("id").custom(existsUser),
+    check("toId").custom(existsUser),
+    validateFields,
+  ],
+  handleFollowUsers
+);
+users.post(
+  "/users/:id/unfollow/:toId",
+  [
+    validateJWT,
+    check("id").not().isEmpty(),
+    check("toId").not().isEmpty(),
+    check("id", "You must provide a valid ID").isMongoId(),
+    check("toId", "You must provide a valid ID").isMongoId(),
+    check("id").custom(existsUser),
+    check("toId").custom(existsUser),
+    validateFields,
+  ],
+  handleUnfollowUsers
 );

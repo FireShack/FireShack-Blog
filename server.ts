@@ -5,6 +5,7 @@ import { users } from "./routes/users.route";
 import { auth } from "./routes/auth.route";
 import { initDB } from "./db/db.config";
 import { entries } from "./routes/entries.route";
+import { search } from "./routes/search.route";
 
 // Basic configs
 dotenv.config();
@@ -20,7 +21,7 @@ app.use(json());
 app.use("/api", users);
 app.use("/api/auth", auth);
 app.use("/api/entries", entries);
-app.use("/api/entries/search", entries);
+app.use("/api/search", search);
 
 // Run server
 app.listen(port, () =>

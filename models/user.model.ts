@@ -56,6 +56,11 @@ const User = new Schema<userModel>({
     default: [],
     ref: "Entry",
   },
+  friends: {
+    type: [String],
+    default: [],
+    ref: "User",
+  },
 });
 
 export default model<userModel>("User", User);

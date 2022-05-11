@@ -82,3 +82,41 @@ export const handleDeleteUsers = async (req: Request, res: Response) => {
     res.status(400).json({ msg: "There was an error", error });
   }
 };
+
+export const handleFollowUsers = async (req: Request, res: Response) => {
+  const { id, toId } = req.params;
+  try {
+    const user = await userModel.findById(id);
+    if (user?.friends.includes(toId)) {
+      return res
+        .status(400)
+        .json({ msg: `User ${id} already follow user ${toId}` });
+    }
+    await userModel.findByIdAndUpdate(id, {
+      $push: { friends: toId },
+    });
+
+    res.status(200).json({ msg: "User followed", toId });
+  } catch (error) {
+    res.status(400).json({ msg: "There was an error", error });
+  }
+};
+
+export const handleUnfollowUsers = async (req: Request, res: Response) => {
+  const { id, toId } = req.params;
+  try {
+    const user = await userModel.findById(id);
+    if (!user?.friends.includes(toId)) {
+      return res
+        .status(400)
+        .json({ msg: `User ${id} doesn't follow user ${toId}` });
+    }
+    await userModel.findByIdAndUpdate(id, {
+      $pull: { friends: toId },
+    });
+
+    res.status(200).json({ msg: "User unfollowed", toId });
+  } catch (error) {
+    res.status(400).json({ msg: "There was an error", error });
+  }
+};
