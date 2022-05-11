@@ -51,6 +51,8 @@ MongoDB operations with Mongoose (ODM) and some more features. How i said previo
 - http://localhost:5000/api/users/add (POST)
 - http://localhost:5000/api/users/modify/:id (PUT)
 - http://localhost:5000/api/users/delete/:id (DELETE)
+- http://localhost:5000/api/users/:id/follow/:toId (POST)
+- http://localhost:5000/api/users/:id/unfollow/:toId (POST)
 
 ### Entries
 
@@ -65,6 +67,11 @@ MongoDB operations with Mongoose (ODM) and some more features. How i said previo
 
 - http://localhost:5000/api/auth/login (POST)
 - http://localhost:5000/api/auth/logout/:id (POST)
+
+### Search
+
+- http://localhost:5000/api/search/users/:params (GET)
+- http://localhost:5000/api/search/entries/:params (GET)
 
 ## Dependencies
 
@@ -82,6 +89,6 @@ You can execute _npm install_. Note that all these packages are installed with t
 
 ## Notice
 
-The last version includes a complete users managment, authentication and an entire social media functionality (a blog in this case). Also includes  interfaces, validations, etc. 
+The last version includes a complete users managment, authentication and an entire social media functionality (a blog in this case) with follow-unfollow and searching system. Also includes interfaces, validations, etc.
 
 Good Code!
