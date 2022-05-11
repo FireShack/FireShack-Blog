@@ -1,7 +1,9 @@
 # Rest TypeScript Server
 
-This is a complete rest server, entirely coded with TypeScript. Is a ready to use server to authenticate users.
-In this case, i used MongoDB and Mongoose for handle all users into the DB. It also includes validations, middlewares and configs that makes this server a good starting shell for your next project.
+This is a complete rest server, entirely coded with TypeScript. Is a ready to use server to server apps like a social media app. Was thinked to serve a blog app, but changing some names and adding a few new features, you will be alowed to serve another app like this.
+
+In this case, i used MongoDB and Mongoose for handle all data into the DB. It also includes validations, middlewares,
+interface and configs that makes this server a good starting shell for your next project.
 
 ## What is this?
 
@@ -13,11 +15,11 @@ This is a ready to use server. You will be able to make http request on the prog
 
 ### Testing
 
-_npm test_ runs **nodemon server.js** so we should use it for testing.
+_npm test_ runs **nodemon dist/server.js** so we should use it for testing.
 
 ### Running the server
 
-_npm start_ runs **node server.js** so we should run to start the server.
+_npm start_ runs **node dist/server.js** so we should run to start the server.
 
 ## How to use it?
 
@@ -28,7 +30,7 @@ _npm start_ runs **node server.js** so we should run to start the server.
 3. Once you have all installed, you need to set your enviroment variables, this ones are
    into the **example.env** file. There you can set the port or some connections
 
-4. After that, must run the test script
+4. After that, you must run _tsc_ to transpile _Ts_ to _Js_. Then run the test script
 
 5. There are define schemas and DB operations, maybe you want to change all and define
    your own data, but the core is it and using it will allows to save a lot of time!
@@ -50,15 +52,19 @@ MongoDB operations with Mongoose (ODM) and some more features. How i said previo
 - http://localhost:5000/api/users/modify/:id (PUT)
 - http://localhost:5000/api/users/delete/:id (DELETE)
 
+### Entries
+
+- http://localhost:5000/api/entries/all (GET all)
+- http://localhost:5000/api/entries/entry/:entryID (GET one)
+- http://localhost:5000/api/entries/:id (GET user entries)
+- http://localhost:5000/api/entries/add/:id (POST)
+- http://localhost:5000/api/entries/modify/:entryID (PUT)
+- http://localhost:5000/api/entries/delete/:entryID (DELETE)
+
 ### Auth
 
 - http://localhost:5000/api/auth/login (POST)
-
-## POSTMAN documentation
-
-You can test all this rest api endpoints with the available link into the description, or cloning this
-repository and starting a node server. I recommends to use POSTMAN to test all the endpoints.
-[Coming soon](https://github.com/FireShack/rest-server-vTS-MongoDB).
+- http://localhost:5000/api/auth/logout/:id (POST)
 
 ## Dependencies
 
@@ -72,9 +78,10 @@ You can execute _npm install_. Note that all these packages are installed with t
 - mongoose
 - nodemon (you must have it downloaded global)
 - express-validator
+- jsonwebtoken
 
 ## Notice
 
-The last version includes a authentication system with the DB and all the validations.
+The last version includes a complete users managment, authentication and an entire social media functionality (a blog in this case). Also includes  interfaces, validations, etc. 
 
 Good Code!
