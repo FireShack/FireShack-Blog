@@ -20,6 +20,7 @@ app.use(json());
 app.use("/api", users);
 app.use("/api/auth", auth);
 app.use("/api/entries", entries);
+app.use("/api/entries/search", entries);
 
 // Run server
 app.listen(port, () =>
