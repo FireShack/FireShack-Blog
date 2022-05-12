@@ -86,6 +86,8 @@ You can execute _npm install_. Note that all these packages are installed with t
 - nodemon (you must have it downloaded global)
 - express-validator
 - jsonwebtoken
+- bcryptjs
+- uuid
 
 ## Notice
 
